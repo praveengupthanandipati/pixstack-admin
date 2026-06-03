@@ -1,0 +1,119 @@
+@use "sass:map"; //Other variables
+$fsize: 16px;
+
+//define a color variables
+$colors: (
+  "primary-color": #E42929,
+  "Primary-10": #3d0b0b,
+  "Primary-20": #661213,
+  "Primary-30": #8f1719,
+  "Primary-40": #b21d20,
+  "Primary-50": #d42426,
+  "Primary-60": #e42929,
+  "Primary-70": #ec5f5f,
+  "Primary-80": #f08d8d,
+  "Primary-90": #f9d4d4,
+  "secondary-color": #000000,
+  "secondary-10": #040404,
+  "secondary-20": #0b0b0b,
+  "secondary-30": #141414,
+  "secondary-40": #1f1f1f,
+  "secondary-50": #2d2d2d,
+  "secondary-60": #3d3d3d,
+  "secondary-70": #4f4f4f,
+  "secondary-80": #666666,
+  "secondary-90": #8a8a8a,
+  "white-color": #fff,
+  "black-color": #000,
+  "black-10": #121212,
+  "black-20": #242424,
+  "black-30": #373737,
+  "black-40": #494949,
+  "black-50": #5B5B5B,
+  "black-60": #6D6D6D,
+  "black-70": #808080,
+  "black-80": #929292,
+  "black-90": #A4A4A4,    
+  "black-100": #d4d4d4,
+  "black-110": #f0efef,
+  "red-color": #ff0000,
+);
+
+//loop colours
+@each $color-name, $color-value in $colors {
+  .bg-#{$color-name} {
+    background-color: $color-value;
+  }
+  .text-#{$color-name} {
+    color: $color-value;
+  }
+  .border-#{$color-name} {
+    border: 1px solid $color-value;
+  }
+}
+
+//examples using
+/**
+<div className="bg-primary text-white p-3"></div>
+<div className="border-white p-3"></div>
+**/
+
+//Font Weights Map
+$font-weights: (
+  "light": 300,
+  "regular": 400,
+  "medium": 500,
+  "semibold": 600,
+  "bold": 700,
+);
+
+//Loop $weight-name, $weight-value in $font-weights
+@each $weight-name, $weight-value in $font-weights {
+  .font-#{$weight-name} {
+    font-weight: $weight-value;
+  }
+}
+
+/*
+<p className="font-light">This text has a light font weight.</p>
+*/
+
+//device breakpoints
+$breakpoints: (
+  "xs": 0,
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+  "xxl": 1400px,
+);
+
+// ─── Brand token shortcuts ────────────────────────────────────────────────
+// Pull named scalars so partials can reference $var directly via the v. namespace
+// instead of repeating raw hex values.
+
+// Primary (red)
+$primary:        #E42929;   // = "primary-color" in $colors map
+$primary-dark:   #b21d20;   // deepest shade — hover / active states
+$primary-hover:  #d42426;   // mid-level hover shade
+
+// Secondary (black accent)
+$secondary:      #000000;   // = "secondary-color" in $colors map
+$secondary-dark: #000000;   // pressed / deeper accent
+$secondary-hover: #141414;  // hover / subtle emphasis
+
+// Neutral surface
+$white:          #fff;      // = "white-color"
+$light-green:    #e8ffed;   // = "Primary-90" — tint / hover background
+$gray-50:        #f9f9f9;   // input / card surface
+$gray-border:    #e4e4e4;   // border / divider line
+
+// Text
+$gray-mid:       #a4a4a4;   // = "black-90" — placeholder, muted icon
+$text-dark:      #242424;   // = "black-20" — primary body text
+$text-muted:     #5b5b5b;   // = "black-50" — secondary / label text
+
+// Semantic
+$danger:         #dc3545;
+$danger-dark:    #b02a37;
+$danger-bg:      #fff5f5;

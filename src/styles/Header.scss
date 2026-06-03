@@ -1,0 +1,161 @@
+@use "sass:map";
+@use "./variables" as v;
+@use "./mixins" as m;
+
+/* Header styles */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 60px;
+  background: #ffffff;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.header-left .menu-btn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  padding: 8px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #f3f4f6;
+  }
+}
+
+// ── icon layers ────────────────────────────────────────────────────────────
+.menu-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.22s ease, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// hamburger: visible by default, hidden when open
+.menu-icon--hamburger {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+// close X: hidden by default, visible when open
+.menu-icon--close {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.6);
+}
+
+// ── toggled state ──────────────────────────────────────────────────────────
+.menu-btn--open {
+  .menu-icon--hamburger {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+  }
+
+  .menu-icon--close {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: #333;
+}
+
+.badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #e53e3e;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 12px;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  color: #333;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  background: #6b7280;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 600;
+}
+
+.username {
+  font-size: 14px;
+  color: #111827;
+}
+
+.caret {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  padding: 8px;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 40;
+}
+
+.dropdown button {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: #111827;
+}
+
+.divider {
+  height: 1px;
+  background: #eef2f7;
+  margin: 4px 0;
+}

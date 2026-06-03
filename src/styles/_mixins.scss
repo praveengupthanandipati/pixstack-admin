@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "./variables" as v;
+
+@mixin siteMain {
+  -webkit-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+// ─── Shared UI helpers ────────────────────────────────────────────────────
+
+// Apply the project typeface — use wherever Bootstrap's default must be overridden
+@mixin poppins {
+  font-family: "Poppins", sans-serif;
+}
+
+// Square pill container used for Cart / User action buttons in the header
+@mixin icon-pill($bg: v.$primary) {
+  width: 46px;
+  height: 46px;
+  background: $bg;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
