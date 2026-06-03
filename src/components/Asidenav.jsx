@@ -149,6 +149,20 @@ const Asidenav = ({ open }) => {
             </NavLink>
           </li>
 
+            {/* Categories */}
+          <li>
+            <NavLink
+              to="/users"
+              className={({ isActive }) =>
+                `nav-item d-flex align-items-center gap-2${isActive ? ' active' : ''}`
+              }
+            >
+              <span className="nav-icon"><UsersIcon /></span>
+              <span className="nav-label flex-grow-1">Categories</span>
+              <span className="badge rounded-pill nav-badge">New</span>
+            </NavLink>
+          </li>
+
           {/* Users */}
           <li>
             <NavLink
