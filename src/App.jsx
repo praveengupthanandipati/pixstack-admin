@@ -5,31 +5,47 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import './styles/App.scss'
 import Header from './components/Header'
 import Asidenav from './components/Asidenav'
+import Footer from './components/Footer'
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
+import Users from './pages/Users'
+
+// Admin shell — sidebar + header + content
+const AdminLayout = ({ children }) => {
+  const [sidebarOpen, setSidebarOpen] = useState(true)
+  return (
+    <div className="d-flex" style={{ height: '100vh', overflow: 'hidden' }}>
+      <Asidenav open={sidebarOpen} />
+      <div className="d-flex flex-column" style={{ flex: 1, minWidth: 0, overflow: 'hidden' }}>
+        <Header sidebarOpen={sidebarOpen} onMenuToggle={() => setSidebarOpen(prev => !prev)} />
+        <main className="flex-grow-1 overflow-auto p-4 bg-light">
+          {children}
+        </main>
+        <Footer />
+      </div>
+    </div>
+  )
+}
 
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
-
   return (
     <Router>
-      <div className="d-flex" style={{ height: '100vh', overflow: 'hidden' }}>
+      <Routes>
+        {/* Full-page login — no sidebar/header */}
+        <Route path="/login" element={<Login />} />
 
-        {/* ── Left sidebar — 20% ── */}
-        <Asidenav open={sidebarOpen} />
-
-        {/* ── Right panel — fills remaining 80% ── */}
-        <div className="d-flex flex-column" style={{ flex: 1, minWidth: 0, overflow: 'hidden' }}>
-          <Header sidebarOpen={sidebarOpen} onMenuToggle={() => setSidebarOpen(prev => !prev)} />
-          <main className="flex-grow-1 overflow-auto p-4 bg-light">
-            <Routes>
-              <Route path="/" element={<div className="text-muted">Dashboard</div>} />
-              <Route path="/users" element={<div className="text-muted">Users</div>} />
-              <Route path="/business-users/*" element={<div className="text-muted">Business Users</div>} />
-              <Route path="/texting-records/*" element={<div className="text-muted">Texting Records</div>} />
-            </Routes>
-          </main>
-        </div>
-
-      </div>
+        {/* Admin shell routes */}
+        <Route path="/dashboard" element={
+          <AdminLayout>
+            <Dashboard />
+          </AdminLayout>
+        } />
+        <Route path="/users" element={
+          <AdminLayout>
+            <Users />
+          </AdminLayout>
+        } />       
+      </Routes>
     </Router>
   )
 }

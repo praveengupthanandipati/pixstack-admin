@@ -95,6 +95,21 @@
 
 .user-menu {
   position: relative;
+
+  // show on hover
+  &:hover .dropdown,
+  &--open .dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  // rotate caret on hover or open
+  &:hover .caret,
+  &--open .caret {
+    transform: rotate(180deg);
+  }
 }
 
 .user-btn {
@@ -128,30 +143,54 @@
 .caret {
   font-size: 12px;
   color: #6b7280;
+  display: inline-block;
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dropdown {
   position: absolute;
   right: 0;
-  top: calc(100% + 8px);
+  top: calc(100% + 2px);
   background: #fff;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
-  padding: 8px;
-  min-width: 150px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 6px;
+  min-width: 160px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  z-index: 40;
+  gap: 2px;
+  z-index: 100;
+
+  // hidden by default — revealed by hover or --open class
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.22s ease,
+              transform 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.22s ease;
 }
 
 .dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   background: none;
   border: none;
+  width: 100%;
   text-align: left;
-  padding: 8px 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 13.5px;
   color: #111827;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: #f5f5f5;
+    color: #000;
+  }
 }
 
 .divider {

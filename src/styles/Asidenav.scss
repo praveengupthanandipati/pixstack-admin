@@ -134,6 +134,15 @@ $transition-ease:     cubic-bezier(0.4, 0, 0.2, 1);
   &--toggle {
     text-align: left;
   }
+
+  &--logout {
+    color: #f87171;
+
+    &:hover {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+    }
+  }
 }
 
 .nav-icon {

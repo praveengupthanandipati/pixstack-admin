@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../styles/Header.scss'
 
 const Header = ({ onMenuToggle, sidebarOpen }) => {
   const [open, setOpen] = useState(false)
   const dropdownRef = useRef(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleOutside = (e) => {
@@ -50,7 +52,7 @@ const Header = ({ onMenuToggle, sidebarOpen }) => {
           <span className="badge">3</span>
         </button>
 
-        <div className="user-menu" ref={dropdownRef}>
+        <div className={`user-menu${open ? ' user-menu--open' : ''}`} ref={dropdownRef}>
           <button className="user-btn" onClick={() => setOpen((s) => !s)} aria-haspopup="true" aria-expanded={open}>
             <span className="avatar">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -62,14 +64,12 @@ const Header = ({ onMenuToggle, sidebarOpen }) => {
             <span className="caret">▾</span>
           </button>
 
-          {open && (
-            <div className="dropdown" role="menu">
-              <button role="menuitem">Profile</button>
-              <button role="menuitem">Settings</button>
-              <div className="divider" />
-              <button role="menuitem">Logout</button>
-            </div>
-          )}
+          <div className="dropdown" role="menu">
+            <button role="menuitem">Profile</button>
+            <button role="menuitem">Settings</button>
+            <div className="divider" />
+            <button role="menuitem" onClick={() => navigate('/login')}>Logout</button>
+          </div>
         </div>
       </div>
     </header>
