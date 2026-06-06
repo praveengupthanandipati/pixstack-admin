@@ -398,13 +398,11 @@ const SubDot = () => (
 
 // ── Masters dropdown items ─────────────────────────────────────────────────
 const MASTERS_ITEMS = [
-  { label: "Categories", badge: null },
-  { label: "Sub Categories", badge: null },
-  { label: "Locations", badge: null },
-  { label: "Skills", badge: null },
-  { label: "Service Types", badge: null },
-  { label: "Packages", badge: null },
-  { label: "Tags", badge: null },
+  { label: "Categories",    badge: "10", path: "/masters/categories" },
+  { label: "Locations",     badge: "8",  path: "/masters/locations" },
+  { label: "Skills",        badge: "8",  path: "/masters/skills" },    
+  { label: "Events",        badge: "12", path: "/masters/eventsmaster" },
+  { label: "Service Types", badge: "8",  path: "/masters/servicetype" },
 ];
 
 const toSlug = (str) => str.toLowerCase().replace(/\s+/g, "-");
@@ -423,10 +421,10 @@ const DropdownGroup = ({ label, icon, items, basePath, isOpen, onToggle }) => (
     </button>
     <div className={`nav-sub-wrapper${isOpen ? " nav-sub-wrapper--open" : ""}`}>
       <ul className="nav-sub list-unstyled mb-0">
-        {items.map(({ label: itemLabel, badge }) => (
+        {items.map(({ label: itemLabel, badge, path: itemPath }) => (
           <li key={itemLabel}>
             <NavLink
-              to={`${basePath}/${toSlug(itemLabel)}`}
+              to={itemPath || `${basePath}/${toSlug(itemLabel)}`}
               className={({ isActive }) =>
                 `nav-sub-item d-flex align-items-center gap-2${isActive ? " active" : ""}`
               }
@@ -526,7 +524,7 @@ const Asidenav = ({ open }) => {
         <p className="nav-section-label px-3">SYSTEM</p>
         <ul className="nav-list list-unstyled mb-0 px-2">
           <NavItem
-            to="/roles"
+            to="/roles-permissions"
             icon={<RolesIcon />}
             label="Roles & Permissions"
           />
